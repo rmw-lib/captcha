@@ -5,7 +5,7 @@ void makegif(unsigned char im[70 * 200], unsigned char gif[gifsize]);
 
 int main()
 {
-  char l[6];
+  char l[7];
   unsigned char im[70 * 200];
   unsigned char gif[gifsize];
 
@@ -13,7 +13,8 @@ int main()
   makegif(im, gif);
 
   write(1, gif, gifsize);
-  write(2, l, 5);
+  write(2, l, 6);
+  write(2, "\n", 1);
 
   return 0;
 }

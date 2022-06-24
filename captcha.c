@@ -192,7 +192,7 @@ static void filter(unsigned char im[70 * 200])
 
 static const char* letters = "abcdafahijklmnopqrstuvwxyz";
 
-void captcha(unsigned char im[70 * 200], unsigned char l[6])
+void captcha(unsigned char im[70 * 200], unsigned char l[7])
 {
   unsigned char swr[200];
   uint8_t s1, s2;
@@ -213,13 +213,15 @@ void captcha(unsigned char im[70 * 200], unsigned char l[6])
   l[2] %= 25;
   l[3] %= 25;
   l[4] %= 25;
-  l[5] = 0;
+  l[5] %= 25;
+  l[6] = 0;
   int p = 30;
   p = letter(l[0], p, im, swr, s1, s2);
   p = letter(l[1], p, im, swr, s1, s2);
   p = letter(l[2], p, im, swr, s1, s2);
   p = letter(l[3], p, im, swr, s1, s2);
-  letter(l[4], p, im, swr, s1, s2);
+  p = letter(l[4], p, im, swr, s1, s2);
+  letter(l[5], p, im, swr, s1, s2);
   dots(im);
   blur(im);
   filter(im);
@@ -229,13 +231,14 @@ void captcha(unsigned char im[70 * 200], unsigned char l[6])
   l[2] = letters[l[2]];
   l[3] = letters[l[3]];
   l[4] = letters[l[4]];
+  l[5] = letters[l[5]];
 }
 
 #ifdef CAPTCHA
 
 int main()
 {
-  char l[6];
+  char l[7];
   unsigned char im[70 * 200];
   unsigned char gif[gifsize];
 
@@ -243,7 +246,8 @@ int main()
   makegif(im, gif);
 
   write(1, gif, gifsize);
-  write(2, l, 5);
+  write(2, l, 6);
+  write(2, "\n", 1);
 
   return 0;
 }
