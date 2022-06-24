@@ -192,7 +192,7 @@ static void filter(unsigned char im[70 * 200])
 
 static const char* letters = "abcdafahijklmnopqrstuvwxyz";
 
-void captcha(unsigned char im[70 * 200], unsigned char l[7])
+void captcha(unsigned char im[70 * 200], unsigned char l[6])
 {
   unsigned char swr[200];
   uint8_t s1, s2;
@@ -214,7 +214,6 @@ void captcha(unsigned char im[70 * 200], unsigned char l[7])
   l[3] %= 25;
   l[4] %= 25;
   l[5] %= 25;
-  l[6] = 0;
   int p = 30;
   p = letter(l[0], p, im, swr, s1, s2);
   p = letter(l[1], p, im, swr, s1, s2);
@@ -238,7 +237,7 @@ void captcha(unsigned char im[70 * 200], unsigned char l[7])
 
 int main()
 {
-  char l[7];
+  char l[6];
   unsigned char im[70 * 200];
   unsigned char gif[gifsize];
 
