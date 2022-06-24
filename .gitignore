@@ -1,1 +1,12 @@
 *.dSYM/
+.DS_Store
+captcha
+libcaptcha.a
+libcaptcha.o
+libcaptcha.c
+test
+f.h
+.libcaptcha.c
+.f.h
+unfont
+core

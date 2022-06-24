@@ -112,7 +112,7 @@ static int letter(int n, int pos, unsigned char im[70 * 200], unsigned char swr[
       *x = (*p) << 4;
     i++;
   }
-  return mpos;
+  return mpos + 3;
 }
 
 #define NDOTS 100
